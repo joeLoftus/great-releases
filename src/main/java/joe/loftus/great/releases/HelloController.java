@@ -1,37 +1,36 @@
 package joe.loftus.great.releases;
 
-import lombok.Data;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
+	
+	
     @Autowired
     NamedParameterJdbcTemplate jdbcTemplate;
-
+    
+    @Autowired
+    private Environment env;    
+    
     @RequestMapping("/")
     String hello() {
         return "Hello World!";
     }
-
-    @Data
-    static class Result {
-        private final int left;
-        private final int right;
-        private final long answer;
-    }
-
-    // SQL sample
-    @RequestMapping("calc")
-    Result calc(@RequestParam int left, @RequestParam int right) {
-        MapSqlParameterSource source = new MapSqlParameterSource()
-                .addValue("left", left)
-                .addValue("right", right);
-        return jdbcTemplate.queryForObject("SELECT :left + :right AS answer", source,
-                (rs, rowNum) -> new Result(left, right, rs.getLong("answer")));
+    
+    @RequestMapping("/movies")
+    String movies() throws IOException {
+    	String apiKey = env.getProperty("apikey");
+    	URL url = new URL("http://www.omdbapi.com/?apikey=" + apiKey + "&t=Lord");
+    	HttpURLConnection con = (HttpURLConnection) url.openConnection();
+    	con.setRequestMethod("GET");
+    	return FullResponseBuilder.getFullResponse(con);
     }
 }
