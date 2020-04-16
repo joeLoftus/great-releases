@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="joe.loftus.great.releases.HelloControllerTest" time="2.139" tests="2" errors="0" skipped="0" failures="0">
+<testsuite name="joe.loftus.great.releases.HelloControllerTest" time="1.218" tests="2" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_201\jre\bin"/>
@@ -26,9 +26,9 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="C:\Users\loft475\eclipse-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf6040157754279475596.tmp"/>
+    <property name="classworlds.conf" value="C:\Users\loft475\eclipse-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf3090772716604144754.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_201\jre\bin;C:\windows\Sun\Java\bin;C:\windows\system32;C:\windows;C:/Program Files/Java/jre1.8.0_241/bin/server;C:/Program Files/Java/jre1.8.0_241/bin;C:/Program Files/Java/jre1.8.0_241/lib/amd64;C:\Program Files (x86)\Google\Chrome\Application;C:\Python38\Scripts\;C:\Python38\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files (x86)\GnuWin32\bin;C:\Users\loft475\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\php;C:\ProgramData\ComposerSetup\bin;C:\HashiCorp\Vagrant\bin;C:\Program Files\dotnet\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Users\loft475\AppData\Local\Programs\Python\Python37-32\Scripts\;C:\Users\loft475\AppData\Local\Programs\Python\Python37-32\;C:\Users\loft475\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk1.8.0_201\bin;C:\Users\loft475\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\loft475\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\loft475\AppData\Roaming\Composer\vendor\bin;C:\Program Files\Git\usr\bin;C:\Users\loft475\AppData\Local\Yarn\bin;C:\Program Files\PostgreSQL\12\bin;C:\Users\loft475\AppData\Roaming\npm;C:\Users\loft475\Downloads;;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_201\jre\bin;C:\windows\Sun\Java\bin;C:\windows\system32;C:\windows;C:/Program Files/Java/jre1.8.0_241/bin/server;C:/Program Files/Java/jre1.8.0_241/bin;C:/Program Files/Java/jre1.8.0_241/lib/amd64;C:\Python38\Scripts\;C:\Python38\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files (x86)\GnuWin32\bin;C:\Users\loft475\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\php;C:\ProgramData\ComposerSetup\bin;C:\HashiCorp\Vagrant\bin;C:\Program Files\dotnet\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Users\loft475\AppData\Local\Programs\Python\Python37-32\Scripts\;C:\Users\loft475\AppData\Local\Programs\Python\Python37-32\;C:\Users\loft475\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk1.8.0_201\bin;C:\Users\loft475\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\loft475\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\loft475\AppData\Roaming\Composer\vendor\bin;C:\Program Files\Git\usr\bin;C:\Users\loft475\AppData\Local\Yarn\bin;C:\Program Files\PostgreSQL\12\bin;C:\Users\loft475\AppData\Roaming\npm;C:\Users\loft475\eclipse\java-2018-122\eclipse;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -39,7 +39,7 @@
     <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="Cp1252"/>
     <property name="user.name" value="loft475"/>
-    <property name="java.class.path" value="C:\Users\loft475\.p2\pool\plugins\org.eclipse.m2e.maven.runtime_1.15.0.20200310-1832\jars\plexus-classworlds-2.6.0.jar"/>
+    <property name="java.class.path" value="C:\Users\loft475\.p2\pool\plugins\org.eclipse.m2e.maven.runtime_1.10.0.20181127-2120\jars\plexus-classworlds-2.5.2.jar"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_201\jre"/>
@@ -60,6 +60,42 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="testHello" classname="joe.loftus.great.releases.HelloControllerTest" time="1.57"/>
-  <testcase name="testCalc" classname="joe.loftus.great.releases.HelloControllerTest" time="0.569"/>
+  <testcase name="testHello" classname="joe.loftus.great.releases.HelloControllerTest" time="0.9"/>
+  <testcase name="testCalc" classname="joe.loftus.great.releases.HelloControllerTest" time="0.318">
+    <failure message="JSON path left doesn&apos;t match.&#10;Expected: is &lt;100&gt;&#10;  Actual: null&#10;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: JSON path left doesn't match.
+Expected: is <100>
+  Actual: null
+
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:80)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrapNoCoerce.callConstructor(ConstructorSite.java:105)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:60)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:235)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:247)
+	at com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:573)
+	at com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)
+	at com.jayway.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:732)
+	at com.jayway.restassured.internal.ResponseSpecificationImpl.this$2$validateResponseIfRequired(ResponseSpecificationImpl.groovy)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:210)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:59)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:52)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:154)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:166)
+	at com.jayway.restassured.internal.ResponseSpecificationImpl.content(ResponseSpecificationImpl.groovy:228)
+	at com.jayway.restassured.specification.ResponseSpecification$content$1.callCurrent(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:52)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:154)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:190)
+	at com.jayway.restassured.internal.ResponseSpecificationImpl.body(ResponseSpecificationImpl.groovy:211)
+	at com.jayway.restassured.internal.ValidatableResponseOptionsImpl.body(ValidatableResponseOptionsImpl.java:257)
+	at joe.loftus.great.releases.HelloControllerTest.testCalc(HelloControllerTest.java:43)
+]]></failure>
+  </testcase>
 </testsuite>
