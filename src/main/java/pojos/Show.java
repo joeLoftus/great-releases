@@ -7,259 +7,179 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties
 public class Show {
-	private String Title;
-	private String Year;
-	private String Rated;
-	private String Released;
-	private String Runtime;
-	private String Genre;
-	private String Director;
-	private String Writer;
-	private String Actors;
-	private String Plot;
-	private String Language;
-	private String Country;
-	private String Awards;
-	private String Poster;
-	private List<ShowRating> Ratings;
-	private String Metascore;
-	private String imdbRating;
-	private String imdbVotes;
-	private String imdbId;
-	private String Type;
-	private String totalSeasons;
-	private String Reponse;
-
+	@JsonProperty("popularity")
+	private String popularity;
+	@JsonProperty("vote_count")
+	private String vote_count;
+	@JsonProperty("video")
+	private String video;
+	@JsonProperty("poster_path")
+	private String poster_path;
+	@JsonProperty("id")
+	private String id;
+	@JsonProperty("adult")
+	private String adult;
+	@JsonProperty("backdrop_path")
+	private String backdrop_path;
+	@JsonProperty("original_language")
+	private String original_language;
+	@JsonProperty("original_title")
+	private String original_title;
+	@JsonProperty("genre_ids")
+	private List<String> genre_ids;
+	@JsonProperty("title")
+	private String title;
+	@JsonProperty("vote_average")
+	private String vote_average;
+	@JsonProperty("overview")
+	private String overview;
+	@JsonProperty("release_date")
+	private String release_date;
+	
 	public Show() {
-		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Show(String title, String year, String rated, String released, String runtime, String genre, String director,
-			String writer, String actors, String plot, String language, String country, String awards, String poster,
-			List<ShowRating> ratings, String metascore, String imdbRating, String imdbVotes, String imdbId, String type,
-			String totalSeasons, String reponse) {
+
+
+	public Show(String popularity, String vote_count, String video, String poster_path, String id, String adult,
+			String backdrop_path, String original_language, String original_title, List<String> genre_ids, String title,
+			String vote_average, String overview, String release_date) {
 		super();
-		Title = title;
-		Year = year;
-		Rated = rated;
-		Released = released;
-		Runtime = runtime;
-		Genre = genre;
-		Director = director;
-		Writer = writer;
-		Actors = actors;
-		Plot = plot;
-		Language = language;
-		Country = country;
-		Awards = awards;
-		Poster = poster;
-		Ratings = ratings;
-		Metascore = metascore;
-		this.imdbRating = imdbRating;
-		this.imdbVotes = imdbVotes;
-		this.imdbId = imdbId;
-		Type = type;
-		this.totalSeasons = totalSeasons;
-		Reponse = reponse;
+		this.popularity = popularity;
+		this.vote_count = vote_count;
+		this.video = video;
+		this.poster_path = poster_path;
+		this.id = id;
+		this.adult = adult;
+		this.backdrop_path = backdrop_path;
+		this.original_language = original_language;
+		this.original_title = original_title;
+		this.genre_ids = genre_ids;
+		this.title = title;
+		this.vote_average = vote_average;
+		this.overview = overview;
+		this.release_date = release_date;
 	}
 
-	@JsonProperty("Country")
-	public String getCountry() {
-		return Country;
+
+
+	public List<String> getGenre_ids() {
+		return genre_ids;
 	}
 
-	public void setCountry(String country) {
-		Country = country;
+
+
+	public void setGenre_ids(List<String> genre_ids) {
+		this.genre_ids = genre_ids;
 	}
 
-	@JsonProperty("Title")
+
+
+	public String getPopularity() {
+		return popularity;
+	}
+
+	public void setPopularity(String popularity) {
+		this.popularity = popularity;
+	}
+
+	public String getVote_count() {
+		return vote_count;
+	}
+
+	public void setVote_count(String vote_count) {
+		this.vote_count = vote_count;
+	}
+
+	public String getVideo() {
+		return video;
+	}
+
+	public void setVideo(String video) {
+		this.video = video;
+	}
+
+	public String getPoster_path() {
+		return poster_path;
+	}
+
+	public void setPoster_path(String poster_path) {
+		this.poster_path = poster_path;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getAdult() {
+		return adult;
+	}
+
+	public void setAdult(String adult) {
+		this.adult = adult;
+	}
+
+	public String getBackdrop_path() {
+		return backdrop_path;
+	}
+
+	public void setBackdrop_path(String backdrop_path) {
+		this.backdrop_path = backdrop_path;
+	}
+
+	public String getOriginal_language() {
+		return original_language;
+	}
+
+	public void setOriginal_language(String original_language) {
+		this.original_language = original_language;
+	}
+
+	public String getOriginal_title() {
+		return original_title;
+	}
+
+	public void setOriginal_title(String original_title) {
+		this.original_title = original_title;
+	}
+
 	public String getTitle() {
-		return Title;
+		return title;
 	}
 
 	public void setTitle(String title) {
-		Title = title;
+		this.title = title;
 	}
 
-	@JsonProperty("Year")
-	public String getYear() {
-		return Year;
+	public String getVote_average() {
+		return vote_average;
 	}
 
-	public void setYear(String year) {
-		Year = year;
+	public void setVote_average(String vote_average) {
+		this.vote_average = vote_average;
 	}
 
-	@JsonProperty("Rated")
-	public String getRated() {
-		return Rated;
+	public String getOverview() {
+		return overview;
 	}
 
-	public void setRated(String rated) {
-		Rated = rated;
+	public void setOverview(String overview) {
+		this.overview = overview;
 	}
 
-	@JsonProperty("Released")
-	public String getReleased() {
-		return Released;
+	public String getRelease_date() {
+		return release_date;
 	}
 
-	public void setReleased(String released) {
-		Released = released;
+	public void setRelease_date(String release_date) {
+		this.release_date = release_date;
 	}
-
-	@JsonProperty("Runtime")
-	public String getRuntime() {
-		return Runtime;
-	}
-
-	public void setRuntime(String runtime) {
-		Runtime = runtime;
-	}
-
-	@JsonProperty("Genre")
-	public String getGenre() {
-		return Genre;
-	}
-
-	public void setGenre(String genre) {
-		Genre = genre;
-	}
-
-	@JsonProperty("Director")
-	public String getDirector() {
-		return Director;
-	}
-
-	public void setDirector(String director) {
-		Director = director;
-	}
-
-	@JsonProperty("Writer")
-	public String getWriter() {
-		return Writer;
-	}
-
-	public void setWriter(String writer) {
-		Writer = writer;
-	}
-
-	@JsonProperty("Actors")
-	public String getActors() {
-		return Actors;
-	}
-
-	public void setActors(String actors) {
-		Actors = actors;
-	}
-
-	@JsonProperty("Plot")
-	public String getPlot() {
-		return Plot;
-	}
-
-	public void setPlot(String plot) {
-		Plot = plot;
-	}
-
-	@JsonProperty("Language")
-	public String getLanguage() {
-		return Language;
-	}
-
-	public void setLanguage(String language) {
-		Language = language;
-	}
-
-	@JsonProperty("Awards")
-	public String getAwards() {
-		return Awards;
-	}
-
-	public void setAwards(String awards) {
-		Awards = awards;
-	}
-
-	@JsonProperty("Poster")
-	public String getPoster() {
-		return Poster;
-	}
-
-	public void setPoster(String poster) {
-		Poster = poster;
-	}
-
-	@JsonProperty("Ratings")
-	public List<ShowRating> getRatings() {
-		return Ratings;
-	}
-
-	public void setRatings(List<ShowRating> ratings) {
-		Ratings = ratings;
-	}
-
-	@JsonProperty("Metascore")
-	public String getMetascore() {
-		return Metascore;
-	}
-
-	public void setMetascore(String metascore) {
-		Metascore = metascore;
-	}
-
-	@JsonProperty("imdbRating")
-	public String getImdbRating() {
-		return imdbRating;
-	}
-
-	public void setImdbRating(String imdbRating) {
-		this.imdbRating = imdbRating;
-	}
-
-	@JsonProperty("imdbVotes")
-	public String getImdbVotes() {
-		return imdbVotes;
-	}
-
-	public void setImdbVotes(String imdbVotes) {
-		this.imdbVotes = imdbVotes;
-	}
-
-	@JsonProperty("imdbID")
-	public String getImdbId() {
-		return imdbId;
-	}
-
-	public void setImdbId(String imdbId) {
-		this.imdbId = imdbId;
-	}
-
-	@JsonProperty("Type")
-	public String getType() {
-		return Type;
-	}
-
-	public void setType(String type) {
-		Type = type;
-	}
-
-	@JsonProperty("totalSeasons")
-	public String getTotalSeasons() {
-		return totalSeasons;
-	}
-
-	public void setTotalSeasons(String totalSeasons) {
-		this.totalSeasons = totalSeasons;
-	}
-
-	@JsonProperty("Response")
-	public String getReponse() {
-		return Reponse;
-	}
-
-	public void setReponse(String reponse) {
-		Reponse = reponse;
-	}
+	
+	
 
 }

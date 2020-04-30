@@ -4,45 +4,52 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SearchResult {
-	private List<SearchResultShow> Search;
-	private String totalResults;
-	private String Response;
-
-	public SearchResult(List<SearchResultShow> Search, String totalResults, String Response) {
+	private List<Show> results;
+	private String page;
+	private String total_results;
+	private Dates dates;
+	private String total_pages;
+	public SearchResult(List<Show> results, String page, String total_results, Dates dates, String total_pages) {
 		super();
-		this.Search = Search;
-		this.totalResults = totalResults;
-		this.Response = Response;
+		this.results = results;
+		this.page = page;
+		this.total_results = total_results;
+		this.dates = dates;
+		this.total_pages = total_pages;
 	}
-
 	public SearchResult() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-
-	@JsonProperty("Search")
-	public List<SearchResultShow> getSearch() {
-		return Search;
+	public List<Show> getResults() {
+		return results;
 	}
-
-	public void setSearch(List<SearchResultShow> Search) {
-		this.Search = Search;
+	public void setResults(List<Show> results) {
+		this.results = results;
 	}
-
-	public String getTotalResults() {
-		return totalResults;
+	public String getPage() {
+		return page;
 	}
-
-	public void setTotalResults(String totalResults) {
-		this.totalResults = totalResults;
+	public void setPage(String page) {
+		this.page = page;
 	}
-
-	@JsonProperty("Response")
-	public String getResponse() {
-		return Response;
+	public String getTotal_results() {
+		return total_results;
 	}
-
-	public void setResponse(String Response) {
-		this.Response = Response;
+	public void setTotal_results(String total_results) {
+		this.total_results = total_results;
 	}
-
+	public Dates getDates() {
+		return dates;
+	}
+	public void setDates(Dates dates) {
+		this.dates = dates;
+	}
+	public String getTotal_pages() {
+		return total_pages;
+	}
+	public void setTotal_pages(String total_pages) {
+		this.total_pages = total_pages;
+	}
+ 
 }
