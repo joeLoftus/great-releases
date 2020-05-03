@@ -1,6 +1,9 @@
 package joe.loftus.great.releases;
 
 import com.jayway.restassured.RestAssured;
+
+import joe.loftus.greatreleases.App;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package joe.loftus.great.releases;
+package joe.loftus.greatreleases;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

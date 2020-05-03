@@ -1,4 +1,4 @@
-package joe.loftus.great.releases;
+package joe.loftus.greatreleases;
 
 import java.io.IOException;
 import java.net.URL;
