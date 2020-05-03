@@ -1,7 +1,6 @@
 package pojos;
 
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SearchResult {
 	private List<Show> results;
@@ -19,7 +18,7 @@ public class SearchResult {
 	}
 	public SearchResult() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	public List<Show> getResults() {
 		return results;

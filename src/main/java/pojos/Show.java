@@ -2,45 +2,25 @@ package pojos;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-@JsonIgnoreProperties
 public class Show {
-	@JsonProperty("popularity")
 	private String popularity;
-	@JsonProperty("vote_count")
 	private String vote_count;
-	@JsonProperty("video")
 	private String video;
-	@JsonProperty("poster_path")
 	private String poster_path;
-	@JsonProperty("id")
 	private String id;
-	@JsonProperty("adult")
 	private String adult;
-	@JsonProperty("backdrop_path")
 	private String backdrop_path;
-	@JsonProperty("original_language")
 	private String original_language;
-	@JsonProperty("original_title")
 	private String original_title;
-	@JsonProperty("genre_ids")
 	private List<String> genre_ids;
-	@JsonProperty("title")
 	private String title;
-	@JsonProperty("vote_average")
 	private String vote_average;
-	@JsonProperty("overview")
 	private String overview;
-	@JsonProperty("release_date")
 	private String release_date;
-	
+
 	public Show() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
-
-
 
 	public Show(String popularity, String vote_count, String video, String poster_path, String id, String adult,
 			String backdrop_path, String original_language, String original_title, List<String> genre_ids, String title,
@@ -62,19 +42,13 @@ public class Show {
 		this.release_date = release_date;
 	}
 
-
-
 	public List<String> getGenre_ids() {
 		return genre_ids;
 	}
 
-
-
 	public void setGenre_ids(List<String> genre_ids) {
 		this.genre_ids = genre_ids;
 	}
-
-
 
 	public String getPopularity() {
 		return popularity;
@@ -179,7 +153,5 @@ public class Show {
 	public void setRelease_date(String release_date) {
 		this.release_date = release_date;
 	}
-	
-	
 
 }

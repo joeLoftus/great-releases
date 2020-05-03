@@ -10,7 +10,7 @@ public class Dates {
 	}
 	public Dates() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	public String getMaximum() {
 		return maximum;
@@ -24,6 +24,5 @@ public class Dates {
 	public void setMinimum(String minimum) {
 		this.minimum = minimum;
 	}
-	
 	
 }
