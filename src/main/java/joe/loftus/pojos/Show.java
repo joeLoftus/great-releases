@@ -1,4 +1,4 @@
-package pojos;
+package joe.loftus.pojos;
 
 import java.util.List;
 

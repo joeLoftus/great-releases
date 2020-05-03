@@ -16,8 +16,8 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import pojos.SearchResult;
-import pojos.Show;
+import joe.loftus.pojos.SearchResult;
+import joe.loftus.pojos.Show;
 
 @RestController
 public class MediaController {
