@@ -63,6 +63,8 @@ public class MediaController {
 			}
 			try {
 				logger.info("Success getHighlyRatedMovies");
+				//store highlyRated in sqllite database
+				//return .get  from sql lite database
 				return highlyRated;
 			} catch (Exception e) {
 				logger.error("Error in getHighlyRatedMovies", e);
@@ -78,3 +80,9 @@ public class MediaController {
 		return null;
 	}
 }
+
+//make a call to the endpoint several times a day.
+//store data in sqllite database
+//outgoing endpoints send data from sqllite database 
+
+//today: one endpoint stores things in datbase and then returns info from that database
