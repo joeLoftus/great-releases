@@ -16,6 +16,7 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import joe.loftus.data.DataController;
 import joe.loftus.pojos.SearchResult;
 import joe.loftus.pojos.Show;
 
@@ -25,9 +26,10 @@ public class MediaController {
 	private Environment env;
 	private double ratingThreshold = 8.5;
 	private static final Logger logger = LogManager.getLogger(MediaController.class);
+	private DataController dataController = new DataController();
 
 	@RequestMapping("/")
-	List<Show> getHighlyRatedMovies() throws IOException {
+	ArrayList<String> getHighlyRatedMovies() throws IOException {
 		List<Show> highlyRated = new ArrayList<Show>();
 		String apiKey = env.getProperty("apikey");
 		URL url = new URL("https://api.themoviedb.org/3/movie/now_playing?api_key=" + apiKey);
@@ -65,7 +67,9 @@ public class MediaController {
 				logger.info("Success getHighlyRatedMovies");
 				//store highlyRated in sqllite database
 				//return .get  from sql lite database
-				return highlyRated;
+//				return highlyRated;
+				dataController.setData(highlyRated);
+				return dataController.getData();
 			} catch (Exception e) {
 				logger.error("Error in getHighlyRatedMovies", e);
 				return null;
