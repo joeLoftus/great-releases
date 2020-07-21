@@ -15,6 +15,7 @@ public class DataController {
 	public void setData(List<Show> shows) throws SQLException {
 		Connection conn = DriverManager.getConnection("jdbc:sqlite:src/main/java/joe/loftus/greatreleases/testjava.db");
 		Statement statement = conn.createStatement();
+		statement.execute("DROP TABLE shows");
 		statement.execute("CREATE TABLE IF NOT EXISTS shows "
 				+ " (popularity TEXT, vote_count TEXT, video TEXT, poster_path TEXT, id TEXT, adult TEXT, backdrop_path TEXT, original_language TEXT, original_title TEXT, genre_ids TEXT[], title TEXT, vote_average TEXT, overview TEXT, release_date TEXT)");
 		

@@ -3,6 +3,7 @@ package joe.loftus.greatreleases;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.LogManager;
@@ -19,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import joe.loftus.data.DataController;
 import joe.loftus.pojos.SearchResult;
 import joe.loftus.pojos.Show;
+import joe.loftus.pojos.ShowComparator;
 
 @RestController
 public class MediaController {
@@ -27,6 +29,11 @@ public class MediaController {
 	private double ratingThreshold = 8.5;
 	private static final Logger logger = LogManager.getLogger(MediaController.class);
 	private DataController dataController = new DataController();
+	
+	List<Show> returnThreeMovies(List<Show> originalList){
+		Collections.sort(originalList, new ShowComparator());
+		return originalList.subList(0, 3);
+	}
 
 	@RequestMapping("/")
 	ArrayList<String> getHighlyRatedMovies() throws IOException {
@@ -68,7 +75,7 @@ public class MediaController {
 				//store highlyRated in sqllite database
 				//return .get  from sql lite database
 //				return highlyRated;
-				dataController.setData(highlyRated);
+				dataController.setData(returnThreeMovies(highlyRated));
 				return dataController.getData();
 			} catch (Exception e) {
 				logger.error("Error in getHighlyRatedMovies", e);

@@ -152,6 +152,5 @@ public class Show {
 
 	public void setRelease_date(String release_date) {
 		this.release_date = release_date;
-	}
-
+	}	
 }
