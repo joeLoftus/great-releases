@@ -20,11 +20,11 @@ public class MediaController {
 	private static final Logger logger = LogManager.getLogger(MediaController.class);
 	private DataController dataController = new DataController();
 
-	@RequestMapping("/")
+	@RequestMapping("/update")
 	List<Show> getHighlyRatedMovies() throws IOException, SQLException {
 		try {
 			dataController.putShowsInDatabase();
-			List<Show> topThree = dataController.getTopThree();
+			List<Show> topThree = dataController.getGraphData();
 			logger.info("Success getHighlyRatedMovies");
 			return topThree;
 		} catch (Exception e) {
@@ -32,10 +32,14 @@ public class MediaController {
 			return null;
 		}
 	}
+	
+	@RequestMapping("/data")
+	List<Show> getData() throws IOException, SQLException {
+		try {
+			return dataController.getGraphData();
+		} catch (Exception e) {
+			logger.error("Error in getData", e);
+			return null;
+		}
+	}
 }
-
-//make a call to the endpoint several times a day.
-//store data in sqllite database
-//outgoing endpoints send data from sqllite database 
-
-//today: one endpoint stores things in datbase and then returns info from that database

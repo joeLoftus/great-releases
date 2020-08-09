@@ -3,8 +3,10 @@ package joe.loftus.data;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,39 +26,36 @@ import joe.loftus.pojos.ShowComparator;
 @Configuration
 @PropertySource("classpath:application.properties")
 public class DataController {
-	private double ratingThreshold = 8.5;
+	private double voteThreshold = 100;
+	private double popularityThreshold = 10;
 	private List<Show> topThree;
 	private ClassLoader loader = Thread.currentThread().getContextClassLoader();
 	private Properties properties = new Properties();
 	private ObjectMapper mapper = new ObjectMapper();
 	private String apiKey;
-	
-	public DataController(){
+
+	public DataController() {
 		super();
-		
 		try (InputStream resourceStream = loader.getResourceAsStream("application.properties")) {
-		    properties.load(resourceStream);
+			properties.load(resourceStream);
 		} catch (IOException e) {
-		    e.printStackTrace();
+			e.printStackTrace();
 		}
 		this.apiKey = properties.getProperty("apikey");
-	}
-
-	public List<Show> getTopThree() {
-		return topThree;
-	}
-
-	public void setTopThree(List<Show> topThree) {
-		this.topThree = topThree;
 	}
 
 	List<Show> returnThreeMovies(List<Show> originalList) {
 		Collections.sort(originalList, new ShowComparator());
 		return originalList.subList(0, 3);
 	}
+	
+	public List<Show> getGraphData(){
+		topThree = returnThreeMovies(getData());
+		return topThree;
+	}
 
 	public void putShowsInDatabase() throws SQLException {
-		List<Show> highlyRated = new ArrayList<Show>();
+		List<Show> popularShows = new ArrayList<Show>();
 		try {
 			URL url = new URL("https://api.themoviedb.org/3/movie/now_playing?api_key=" + apiKey);
 			SearchResult initialResult = this.mapper.readValue(url, SearchResult.class);
@@ -66,8 +65,9 @@ public class DataController {
 			// Loop through all shows on first initialResult to prevent call the first api
 			// call again
 			for (Show show : initialShows) {
-				if (Double.valueOf(show.getVote_average()) >= ratingThreshold) {
-					highlyRated.add(show);
+				if (Double.valueOf(show.getVote_count()) >= voteThreshold
+						&& Double.valueOf(show.getPopularity()) >= popularityThreshold) {
+					popularShows.add(show);
 				}
 			}
 
@@ -79,8 +79,9 @@ public class DataController {
 				SearchResult pageResult = mapper.readValue(pageUrl, SearchResult.class);
 				List<Show> pageShows = pageResult.getResults();
 				for (Show pageShow : pageShows) {
-					if (Double.valueOf(pageShow.getVote_average()) >= ratingThreshold) {
-						highlyRated.add(pageShow);
+					if (Double.valueOf(pageShow.getVote_count()) >= voteThreshold
+							&& Double.valueOf(pageShow.getPopularity()) >= popularityThreshold) {
+						popularShows.add(pageShow);
 					}
 				}
 				paginationIndex = paginationIndex - 1;
@@ -93,8 +94,18 @@ public class DataController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		setData(highlyRated);
-		this.setTopThree(highlyRated.subList(0, 3));
+		setData(popularShows);
+	}
+
+	private String createGenreIdString(String[] ids) {
+		String genreIdString = "";
+		for (int i = 0; i < ids.length; i++) {
+			genreIdString += ids[i];
+			if (i != ids.length - 1) {
+				genreIdString += ',';
+			}
+		}
+		return genreIdString;
 	}
 
 	public void setData(List<Show> shows) throws SQLException {
@@ -114,12 +125,13 @@ public class DataController {
 					+ String.valueOf(shows.get(i).getAdult()).replaceAll("'", "") + "','"
 					+ String.valueOf(shows.get(i).getBackdrop_path()).replaceAll("'", "") + "','"
 					+ String.valueOf(shows.get(i).getOriginal_language()).replaceAll("'", "") + "','"
-					+ String.valueOf(shows.get(i).getOriginal_title()).replaceAll("'", "") + "','"
-					+ String.valueOf(shows.get(i).getGenre_ids()) + "','"
+					+ String.valueOf(shows.get(i).getOriginal_title()).replaceAll("'", "") + "','("
+					+ createGenreIdString(shows.get(i).getGenre_ids()) + ")','"
 					+ String.valueOf(shows.get(i).getTitle()).replaceAll("'", "") + "','"
 					+ String.valueOf(shows.get(i).getVote_average()).replaceAll("'", "") + "','"
 					+ String.valueOf(shows.get(i).getOverview()).replaceAll("'", "") + "','"
 					+ String.valueOf(shows.get(i).getRelease_date()).replaceAll("'", "") + "')";
+
 			statement.execute(string);
 		}
 
@@ -127,8 +139,8 @@ public class DataController {
 		conn.close();
 	}
 
-	public ArrayList<String> getData() {
-		ArrayList<String> data = new ArrayList<String>();
+	public ArrayList<Show> getData() {
+		ArrayList<Show> data = new ArrayList<Show>();
 		try {
 			Connection conn = DriverManager
 					.getConnection("jdbc:sqlite:src/main/java/joe/loftus/greatreleases/testjava.db");
@@ -139,7 +151,24 @@ public class DataController {
 			statement.execute("SELECT * FROM shows");
 			ResultSet results = statement.getResultSet();
 			while (results.next()) {
-				data.add(results.getString("title") + " " + results.getInt("id"));
+				String popularity = results.getString("popularity");
+				String vote_count = results.getString("vote_count");
+				String video = results.getString("video");
+				String poster_path = results.getString("poster_path");
+				String id = results.getString("id");
+				String adult = results.getString("adult");
+				String backdrop_path = results.getString("backdrop_path");
+				String original_language = results.getString("original_language");
+				String original_title = results.getString("original_title");
+				String genre_ids_array = results.getString("genre_ids");
+				String[] genre_ids = new String[] { genre_ids_array };
+				String title = results.getString("title");
+				String vote_average = results.getString("vote_average");
+				String overview = results.getString("overview");
+				String release_date = results.getString("release_date");
+				Show show = new Show(popularity, vote_count, video, poster_path, id, adult, backdrop_path,
+						original_language, original_title, genre_ids, title, vote_average, overview, release_date);
+				data.add(show);
 			}
 			results.close();
 			statement.close();

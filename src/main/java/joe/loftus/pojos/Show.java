@@ -1,5 +1,7 @@
 package joe.loftus.pojos;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Show {
@@ -12,7 +14,7 @@ public class Show {
 	private String backdrop_path;
 	private String original_language;
 	private String original_title;
-	private List<String> genre_ids;
+	private String[] genre_ids;
 	private String title;
 	private String vote_average;
 	private String overview;
@@ -23,7 +25,7 @@ public class Show {
 	}
 
 	public Show(String popularity, String vote_count, String video, String poster_path, String id, String adult,
-			String backdrop_path, String original_language, String original_title, List<String> genre_ids, String title,
+			String backdrop_path, String original_language, String original_title, String[] genre_ids, String title,
 			String vote_average, String overview, String release_date) {
 		super();
 		this.popularity = popularity;
@@ -42,11 +44,11 @@ public class Show {
 		this.release_date = release_date;
 	}
 
-	public List<String> getGenre_ids() {
+	public String[] getGenre_ids() {
 		return genre_ids;
 	}
 
-	public void setGenre_ids(List<String> genre_ids) {
+	public void setGenre_ids(String[] genre_ids) {
 		this.genre_ids = genre_ids;
 	}
 
