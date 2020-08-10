@@ -30,6 +30,8 @@ public class DataController {
 	private ClassLoader loader = Thread.currentThread().getContextClassLoader();
 	private Properties properties = new Properties();
 	private ObjectMapper mapper = new ObjectMapper();
+	private String databaseLocation = "jdbc:sqlite:src/main/java/joe/loftus/greatreleases/shows.db";
+	private String moviesEndpoint = "https://api.themoviedb.org/3/movie/now_playing?api_key=";
 	private String apiKey;
 
 	public DataController() {
@@ -55,7 +57,7 @@ public class DataController {
 	public void putShowsInDatabase() throws SQLException {
 		List<Show> popularShows = new ArrayList<Show>();
 		try {
-			URL url = new URL("https://api.themoviedb.org/3/movie/now_playing?api_key=" + apiKey);
+			URL url = new URL(moviesEndpoint + apiKey);
 			SearchResult initialResult = this.mapper.readValue(url, SearchResult.class);
 			List<Show> initialShows = initialResult.getResults();
 			int paginationIndex = Integer.parseInt(initialResult.getTotal_pages());
@@ -72,7 +74,7 @@ public class DataController {
 			// make an api call to each page except the first and put all qualified shows in
 			// the final result
 			while (paginationIndex > 1) {
-				URL pageUrl = new URL("https://api.themoviedb.org/3/movie/now_playing?api_key=" + this.apiKey + "&page="
+				URL pageUrl = new URL(moviesEndpoint + this.apiKey + "&page="
 						+ paginationIndex);
 				SearchResult pageResult = mapper.readValue(pageUrl, SearchResult.class);
 				List<Show> pageShows = pageResult.getResults();
@@ -107,7 +109,7 @@ public class DataController {
 	}
 
 	public void setData(List<Show> shows) throws SQLException {
-		Connection conn = DriverManager.getConnection("jdbc:sqlite:src/main/java/joe/loftus/greatreleases/shows.db");
+		Connection conn = DriverManager.getConnection(databaseLocation);
 		Statement statement = conn.createStatement();
 		statement.execute("DROP TABLE IF EXISTS shows");
 		statement.execute("CREATE TABLE IF NOT EXISTS shows "
@@ -141,7 +143,7 @@ public class DataController {
 		ArrayList<Show> data = new ArrayList<Show>();
 		try {
 			Connection conn = DriverManager
-					.getConnection("jdbc:sqlite:src/main/java/joe/loftus/greatreleases/shows.db");
+					.getConnection(databaseLocation);
 			Statement statement = conn.createStatement();
 
 			statement.execute("CREATE TABLE IF NOT EXISTS shows "

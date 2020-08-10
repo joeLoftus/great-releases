@@ -21,7 +21,7 @@ public class ScheduledUpdater {
 		log.info("Updating Database {}", dateFormat.format(new Date()));
 		try {
 			dataController.putShowsInDatabase();
-			log.info("Success updated database");
+			log.info("Success updating database");
 		} catch (Exception e) {
 			log.error("Error updating database", e);
 		}
