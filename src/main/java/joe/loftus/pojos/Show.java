@@ -1,9 +1,5 @@
 package joe.loftus.pojos;
 
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Show {
 	private String popularity;
 	private String vote_count;

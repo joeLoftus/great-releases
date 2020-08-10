@@ -19,21 +19,8 @@ public class MediaController {
 	@Autowired
 	private static final Logger logger = LogManager.getLogger(MediaController.class);
 	private DataController dataController = new DataController();
-
-	@RequestMapping("/update")
-	List<Show> getHighlyRatedMovies() throws IOException, SQLException {
-		try {
-			dataController.putShowsInDatabase();
-			List<Show> topThree = dataController.getGraphData();
-			logger.info("Success getHighlyRatedMovies");
-			return topThree;
-		} catch (Exception e) {
-			logger.error("Error in getHighlyRatedMovies", e);
-			return null;
-		}
-	}
 	
-	@RequestMapping("/data")
+	@RequestMapping("/")
 	List<Show> getData() throws IOException, SQLException {
 		try {
 			return dataController.getGraphData();

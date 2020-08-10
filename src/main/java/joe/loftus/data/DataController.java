@@ -3,10 +3,8 @@ package joe.loftus.data;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -109,7 +107,7 @@ public class DataController {
 	}
 
 	public void setData(List<Show> shows) throws SQLException {
-		Connection conn = DriverManager.getConnection("jdbc:sqlite:src/main/java/joe/loftus/greatreleases/testjava.db");
+		Connection conn = DriverManager.getConnection("jdbc:sqlite:src/main/java/joe/loftus/greatreleases/shows.db");
 		Statement statement = conn.createStatement();
 		statement.execute("DROP TABLE IF EXISTS shows");
 		statement.execute("CREATE TABLE IF NOT EXISTS shows "
@@ -143,7 +141,7 @@ public class DataController {
 		ArrayList<Show> data = new ArrayList<Show>();
 		try {
 			Connection conn = DriverManager
-					.getConnection("jdbc:sqlite:src/main/java/joe/loftus/greatreleases/testjava.db");
+					.getConnection("jdbc:sqlite:src/main/java/joe/loftus/greatreleases/shows.db");
 			Statement statement = conn.createStatement();
 
 			statement.execute("CREATE TABLE IF NOT EXISTS shows "
