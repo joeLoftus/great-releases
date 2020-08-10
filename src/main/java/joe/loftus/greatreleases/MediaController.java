@@ -35,7 +35,7 @@ public class MediaController {
 		try {
 			return dataController.getEnglishGraphData();
 		} catch (Exception e) {
-			logger.error("Error in getData", e);
+			logger.error("Error in getEnglishData", e);
 			return null;
 		}
 	}
