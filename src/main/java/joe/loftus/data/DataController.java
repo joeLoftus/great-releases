@@ -17,6 +17,7 @@ import org.springframework.context.annotation.PropertySource;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import joe.loftus.pojos.SearchResult;
 import joe.loftus.pojos.Show;
 import joe.loftus.pojos.ShowComparator;
@@ -27,6 +28,7 @@ public class DataController {
 	private double voteThreshold = 100;
 	private double popularityThreshold = 10;
 	private List<Show> topThree;
+	private List<Show> englishTopThree;
 	private ClassLoader loader = Thread.currentThread().getContextClassLoader();
 	private Properties properties = new Properties();
 	private ObjectMapper mapper = new ObjectMapper();
@@ -48,11 +50,16 @@ public class DataController {
 		Collections.sort(originalList, new ShowComparator());
 		return originalList.subList(0, 3);
 	}
-	
-	public List<Show> getGraphData(){
+
+	public List<Show> getGraphData() {
 		topThree = returnThreeMovies(getData());
 		return topThree;
 	}
+
+	public List<Show> getEnglishGraphData() {
+		englishTopThree = returnThreeMovies(getEnglishData());
+		return englishTopThree;
+	};
 
 	public void putShowsInDatabase() throws SQLException {
 		List<Show> popularShows = new ArrayList<Show>();
@@ -74,8 +81,7 @@ public class DataController {
 			// make an api call to each page except the first and put all qualified shows in
 			// the final result
 			while (paginationIndex > 1) {
-				URL pageUrl = new URL(moviesEndpoint + this.apiKey + "&page="
-						+ paginationIndex);
+				URL pageUrl = new URL(moviesEndpoint + this.apiKey + "&page=" + paginationIndex);
 				SearchResult pageResult = mapper.readValue(pageUrl, SearchResult.class);
 				List<Show> pageShows = pageResult.getResults();
 				for (Show pageShow : pageShows) {
@@ -138,16 +144,13 @@ public class DataController {
 		statement.close();
 		conn.close();
 	}
-
+	
 	public ArrayList<Show> getData() {
 		ArrayList<Show> data = new ArrayList<Show>();
 		try {
-			Connection conn = DriverManager
-					.getConnection(databaseLocation);
+			Connection conn = DriverManager.getConnection(databaseLocation);
 			Statement statement = conn.createStatement();
 
-			statement.execute("CREATE TABLE IF NOT EXISTS shows "
-					+ " (popularity TEXT, vote_count TEXT, video TEXT, poster_path TEXT, id TEXT, adult TEXT, backdrop_path TEXT, original_language TEXT, original_title TEXT, genre_ids TEXT[], title TEXT, vote_average TEXT, overview TEXT, release_date TEXT)");
 			statement.execute("SELECT * FROM shows");
 			ResultSet results = statement.getResultSet();
 			while (results.next()) {
@@ -169,6 +172,45 @@ public class DataController {
 				Show show = new Show(popularity, vote_count, video, poster_path, id, adult, backdrop_path,
 						original_language, original_title, genre_ids, title, vote_average, overview, release_date);
 				data.add(show);
+			}
+			results.close();
+			statement.close();
+			conn.close();
+		} catch (SQLException e) {
+			System.out.println("Something went wrong: " + e.getMessage());
+		}
+		return data;
+	}
+
+	public ArrayList<Show> getEnglishData() {
+		ArrayList<Show> data = new ArrayList<Show>();
+		try {
+			Connection conn = DriverManager.getConnection(databaseLocation);
+			Statement statement = conn.createStatement();
+
+			statement.execute("SELECT * FROM shows");
+			ResultSet results = statement.getResultSet();
+			while (results.next()) {
+				String original_language = results.getString("original_language");
+				if (original_language.equals("en")) {
+					String popularity = results.getString("popularity");
+					String vote_count = results.getString("vote_count");
+					String video = results.getString("video");
+					String poster_path = results.getString("poster_path");
+					String id = results.getString("id");
+					String adult = results.getString("adult");
+					String backdrop_path = results.getString("backdrop_path");
+					String original_title = results.getString("original_title");
+					String genre_ids_array = results.getString("genre_ids");
+					String[] genre_ids = new String[] { genre_ids_array };
+					String title = results.getString("title");
+					String vote_average = results.getString("vote_average");
+					String overview = results.getString("overview");
+					String release_date = results.getString("release_date");
+					Show show = new Show(popularity, vote_count, video, poster_path, id, adult, backdrop_path,
+							original_language, original_title, genre_ids, title, vote_average, overview, release_date);
+					data.add(show);
+				}
 			}
 			results.close();
 			statement.close();

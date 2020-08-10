@@ -29,4 +29,14 @@ public class MediaController {
 			return null;
 		}
 	}
+	
+	@RequestMapping("/english")
+	List<Show> getEnglishData() throws IOException, SQLException {
+		try {
+			return dataController.getEnglishGraphData();
+		} catch (Exception e) {
+			logger.error("Error in getData", e);
+			return null;
+		}
+	}
 }
