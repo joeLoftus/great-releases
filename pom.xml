@@ -87,7 +87,7 @@
 				<artifactId>heroku-maven-plugin</artifactId>
 				<version>3.0.3</version>
 				<configuration>
-					<appName>great.releases</appName>
+					<appName>mazzle</appName>
 				</configuration>
 			</plugin>
 		</plugins>
