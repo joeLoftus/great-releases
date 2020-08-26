@@ -7,7 +7,7 @@
 	<groupId>joe.loftus</groupId>
 	<artifactId>great.releases</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>Spring Boot Blank Project (from https://github.com/making/spring-boot-blank)</name>
 
@@ -81,6 +81,14 @@
 						<version>${spring-loaded.version}</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<version>3.0.3</version>
+				<configuration>
+					<appName>great.releases</appName>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
