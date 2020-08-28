@@ -19,7 +19,7 @@ import joe.loftus.pojos.Show;
 @RestController
 public class MediaController {
 	@Autowired
-	private static final Logger logger = LoggerFactory.getLogger(ScheduledUpdater.class);
+//	private static final Logger logger = LoggerFactory.getLogger(ScheduledUpdater.class);
 	private DataController dataController = new DataController();
 
 	@RequestMapping("/")
@@ -27,7 +27,7 @@ public class MediaController {
 		try {
 			return dataController.getGraphData();
 		} catch (Exception e) {
-			logger.error("Error in getData", e);
+//			logger.error("Error in getData", e);
 			return null;
 		}
 	}
@@ -37,7 +37,7 @@ public class MediaController {
 		try {
 			return dataController.getEnglishGraphData();
 		} catch (Exception e) {
-			logger.error("Error in getEnglishData", e);
+//			logger.error("Error in getEnglishData", e);
 			return null;
 		}
 	}
