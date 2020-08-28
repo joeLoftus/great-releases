@@ -41,9 +41,4 @@ public class MediaController {
 			return null;
 		}
 	}
-	
-	@RequestMapping("/test")
-	String test(){
-		return "Hello";
-	}
 }

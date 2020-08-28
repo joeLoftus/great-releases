@@ -1,7 +1,6 @@
 package joe.loftus.data;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Properties;
+import java.util.Map;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -29,8 +28,6 @@ public class DataController {
 	private double popularityThreshold = 10;
 	private List<Show> topThree;
 	private List<Show> englishTopThree;
-	private ClassLoader loader = Thread.currentThread().getContextClassLoader();
-	private Properties properties = new Properties();
 	private ObjectMapper mapper = new ObjectMapper();
 	private String databaseLocation = "jdbc:sqlite:src/main/java/joe/loftus/greatreleases/shows.db";
 	private String moviesEndpoint = "https://api.themoviedb.org/3/movie/now_playing?api_key=";
@@ -38,12 +35,8 @@ public class DataController {
 
 	public DataController() {
 		super();
-		try (InputStream resourceStream = loader.getResourceAsStream("application.properties")) {
-			properties.load(resourceStream);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		this.apiKey = properties.getProperty("apikey");
+        Map<String, String> env = System.getenv();
+		this.apiKey = env.get("apiKey");
 	}
 
 	List<Show> returnThreeMovies(List<Show> originalList) {
@@ -81,7 +74,7 @@ public class DataController {
 			// make an api call to each page except the first and put all qualified shows in
 			// the final result
 			while (paginationIndex > 1) {
-				URL pageUrl = new URL(moviesEndpoint + this.apiKey + "&page=" + paginationIndex);
+				URL pageUrl = new URL(moviesEndpoint + apiKey + "&page=" + paginationIndex);
 				SearchResult pageResult = mapper.readValue(pageUrl, SearchResult.class);
 				List<Show> pageShows = pageResult.getResults();
 				for (Show pageShow : pageShows) {
