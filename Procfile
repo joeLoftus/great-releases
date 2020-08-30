@@ -1,0 +1,1 @@
+java -jar target/great.releases-0.0.1-SNAPSHOT.jar
