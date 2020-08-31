@@ -19,7 +19,7 @@ import joe.loftus.pojos.Show;
 @RestController
 public class MediaController {
 	@Autowired
-	private static final Logger logger = LoggerFactory.getLogger(ScheduledUpdater.class);
+	private static final Logger logger = LoggerFactory.getLogger(MediaController.class);
 	private DataController dataController = new DataController();
 
 	@RequestMapping("/")
