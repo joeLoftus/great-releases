@@ -31,12 +31,11 @@ public class DataController {
 	private ObjectMapper mapper = new ObjectMapper();
 	private String databaseLocation = "jdbc:sqlite:src/main/java/joe/loftus/greatreleases/shows.db";
 	private String moviesEndpoint = "https://api.themoviedb.org/3/movie/now_playing?api_key=";
-	private String apiKey;
+	private String apiKey = System.getenv("apiKey");
 
 	public DataController() {
 		super();
-        Map<String, String> env = System.getenv();
-		this.apiKey = env.get("apiKey");
+		this.apiKey = System.getenv("apiKey");
 	}
 
 	List<Show> returnThreeMovies(List<Show> originalList) {
@@ -54,7 +53,7 @@ public class DataController {
 		return englishTopThree;
 	};
 
-	public void putShowsInDatabase() throws SQLException {
+	public void putShowsInDatabase() throws SQLException, ClassNotFoundException {
 		List<Show> popularShows = new ArrayList<Show>();
 		try {
 			URL url = new URL(moviesEndpoint + apiKey);
@@ -107,7 +106,7 @@ public class DataController {
 		return genreIdString;
 	}
 
-	public void setData(List<Show> shows) throws SQLException {
+	public void setData(List<Show> shows) throws SQLException, ClassNotFoundException {
 		Connection conn = DriverManager.getConnection(databaseLocation);
 		Statement statement = conn.createStatement();
 		statement.execute("DROP TABLE IF EXISTS shows");

@@ -5,3 +5,4 @@ joe\loftus\data\DataController.class
 joe\loftus\pojos\SearchResult.class
 joe\loftus\greatreleases\App.class
 joe\loftus\pojos\Show.class
+joe\loftus\greatreleases\ScheduledUpdater.class
